@@ -1,0 +1,24 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="page.css" />
+    <script language="javascript" src="page.js"></script>
+</head>
+
+<h1 id="title">List of Grades</h1>
+
+<form>
+    <p>
+        Name:<input type="text" id="Name" value="Name">     
+        StudentId:<input type="text" id="StudentId" value="Student Id(eg.0001)">    
+        Grade:<input type="text" id="Grade" value="Grade(eg.84)">
+    </p>
+    <input type="button" onclick=add() value="Add">
+    <table id="table" cellpadding="10" width="100%">
+            <tr class="heading">
+                <th class="checktd">&nbsp;</th>
+                <th>Name</th>
+                <th>Student Id</th>
+                <th>Grade</th>
+            </tr>
+    </table>
+    <input type="button" onclick=del() value="Delete Selected">
+</form>
