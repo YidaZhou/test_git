@@ -1,38 +1,38 @@
 
-var number_of_rows = 2;
+var number_of_rows = 0;
 
 var add = function() {
     let tr = makeNewTr();
     tr.id = ++number_of_rows;
-    let table = document.getElementById("table");
-    table.appendChild(tr);
+    $("#table").append(tr);
     renew();
 }
 
 var renew = function(){
-    let list = document.getElementById("table").getElementsByTagName("tr");
+    let list = $("#table tr");
     number_of_rows = 0;
     for(let tr of list){
         if(tr.className!="heading"){
             tr.id = ++number_of_rows;
-            if(number_of_rows%2==0){ tr.className = "even"; }
-            else { tr.className = "odd"; }            
+            if(number_of_rows%2==0){ 
+                tr.className = "even"; 
+            } else { 
+                tr.className = "odd"; 
+            }            
         }
     }
-    console.log(list);
 }
 
 var del = function() {
-    let table = document.getElementById("table");
-    let list = table.getElementsByTagName("tr");
-    for (let i=number_of_rows;i>0;i--){
-        for(let row of list){
-            if(row.className!="heading"){
-                let check = row.getElementsByClassName("checktd")[0];
-                if(check.checked){
-                    table.removeChild(row);
-                }
-            }
+    let list = $("#table").find("tr");
+    let current = list.first();
+    let next = current.next();
+    for(let i=0;i<number_of_rows;i++){
+        current = next;
+        next = current.next();
+        let check = current.find("input:checkbox");
+        if(check.is(":checked")){
+            current.remove();
         }
     }
     renew();
@@ -40,17 +40,17 @@ var del = function() {
 
 var makeNewTr = function() {
     let check = document.createElement("input");
-    let name = document.getElementById("Name");
-    let studentId = document.getElementById("StudentId");
-    let grade = document.getElementById("Grade");
-    let table = document.getElementById("table");
+    let name = $("#Name");
+    let studentId = $("#StudentId");
+    let grade = $("#Grade");
+    let table = $("#table");
     let tr = document.createElement("tr");
     check.type = "checkbox";
     check.className = "checktd";
     tr.appendChild(check);
-    addTd2Tr(name.value, tr);
-    addTd2Tr(studentId.value, tr);
-    addTd2Tr(grade.value, tr);
+    addTd2Tr(name.val(), tr);
+    addTd2Tr(studentId.val(), tr);
+    addTd2Tr(grade.val(), tr);
     return tr;
 }
 
