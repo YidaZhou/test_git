@@ -1,0 +1,22 @@
+.element { text-align: center }
+.even {
+    background-color: GhostWhite;
+    height: 15px;
+}
+.odd { height: 15px; }
+.heading { background-color: Gainsboro;}
+.checktd { width:15px; }
+.button {
+    border: none;
+    display: inline-block;
+    font-size: 15px;
+    width: 120px;
+}
+#adding_button { 
+    background-color: #008CBA;
+    color: white;
+}
+#delete_button {
+    background-color: #f44336;
+    color: white;
+}

@@ -1,0 +1,27 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="page.css" />
+    <script src="jquery-3.3.1.min.js"></script>
+    <script language="javascript" src="page.js"></script>
+</head>
+
+<h1 id="title">List of Grades</h1>
+
+<form>
+    <div>
+        <p>
+            Name:<input type="text" id="Name" placeholder="Name">     
+            StudentId:<input type="text" id="StudentId" placeholder="Student Id(eg.0001)">    
+            Grade:<input type="text" id="Grade" placeholder="Grade(eg.84)">
+        </p>
+        <input class="button" id="adding_button" type="button" onclick=add() value="Add">
+    </div>
+    <table id="table" cellpadding="10" width="100%" border="0">
+            <tr class="heading">
+                <th class="checktd">&nbsp;</th>
+                <th>Name</th>
+                <th>Student Id</th>
+                <th>Grade</th>
+            </tr>
+    </table>
+    <input class="button" id="delete_button" type="button" onclick=del() value="Delete Selected">
+</form>
