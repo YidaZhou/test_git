@@ -7,6 +7,8 @@ module.exports = (app) => {
     router.post('/add', PageController.save_data )
 
     router.post('/del', PageController.delete_data )
+
+    router.get('/get', PageController.renew_data )
         
     // router.get('/:id/:name', async(ctx, next)=>{
     //     console.log(ctx.params)
