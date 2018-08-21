@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title></title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="page/page.css" />
+<script src="page/jquery-3.3.1.min.js"></script>
+<script language="javascript" src="page/page.js"></script>
+</head>
+
+<body>
+    <form action="/" method="post">
+        <p>
+            Name:<input type="text" name="name" id="Name" placeholder="Name">     
+            StudentId:<input type="text" name="studentId" id="StudentId" placeholder="Student Id(eg.0001)">    
+            Grade:<input type="text" name="grade" id="Grade" placeholder="Grade(eg.84)">
+        </p>
+        <input class="button" id="adding_button" onclick=add() type="button" value="Add">        
+        <table id="table" cellpadding="10" width="100%" border="0">
+                <tr class="heading">
+                    <th class="checktd">&nbsp;</th>
+                    <th>Name</th>
+                    <th>Student Id</th>
+                    <th>Grade</th>
+                </tr>
+        </table>
+        <input class="button" id="delete_button" type="button" onclick=del() value="Delete Selected">
+        <button>Go page</button>
+    </form>
+</body>
+
+</html>
