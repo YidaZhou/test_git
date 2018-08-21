@@ -13,7 +13,7 @@ module.exports = {
     wrong: async(ctx, next) => {
         ctx.response.body = '<h1>404 Not Found</h1>'
     },
-    delete_data: async(ctx, next)=>{
+    delete_data: async(ctx, next)=> {
         let id = ctx.request.body.id;
         let id_prop = 0;
         console.log("id:"+id);
@@ -26,5 +26,9 @@ module.exports = {
             obj.id = '' + ++id_prop; 
         }
         console.log(arr);
+    },
+    renew_data: async(ctx, next)=> {
+        let temp = arr;
+        ctx.body = JSON.stringify(temp);
     }
 }

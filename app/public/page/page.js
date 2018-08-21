@@ -4,9 +4,22 @@ var add = function() {
     add_data();
     let tr = makeNewTr();
     tr.id = number_of_rows;
+    console.log(tr);
     $("#table").append(tr);
-    
     renew();
+}
+
+var remake_table = function(){
+    let data_list = get_new_data();
+    for(let data of data_list){
+        let tr = remake_tr(data);
+        tr.id = data.id;
+        tr.class = "odd";
+        number_of_rows = parseInt(tr.id);
+        $("#table").append(tr);
+        renew();
+        console.log(tr);
+    }
 }
 
 var renew = function(){
@@ -39,7 +52,25 @@ var del = function() {
         }
     }
     renew();
+    // get_new_data();
 }
+
+var remake_tr = function(data){
+    let check = document.createElement("input");
+    let name = data.name;
+    let studentId = data.studentId;
+    let grade = data.grade;
+    let table = $("#table");
+    let tr = document.createElement("tr");
+    check.type = "checkbox";
+    check.className = "checktd";
+    tr.appendChild(check);
+    addTd2Tr(name, tr);
+    addTd2Tr(studentId, tr);
+    addTd2Tr(grade, tr);
+    return tr;
+}
+
 
 var makeNewTr = function() {
     let check = document.createElement("input");
@@ -81,6 +112,19 @@ var add_data = function() {
         }, 
         type:"POST"
     });
+}
+
+var delete_data = function(ID){
+    $.ajax({
+        url:"http://localhost:3000/del", 
+        async:true, 
+        dataType:"json", 
+        data:{
+            id: ID,
+        }, 
+        type:"POST"
+    });
+}
 // xmlhttp=$.ajax({url:"page/page.xml",async:true, dataType:"xml", data:"<p>hello world.</p>", success: function(result, status){
 //     var n = document.createElement("row");
 //     n.id = "1";
@@ -96,16 +140,25 @@ var add_data = function() {
 //     var s = xmlDoc;
 //     console.log(xmlhttp);    
 // }
+
+var get_new_data = function(){
+    var doc;
+    var http = $.ajax({
+        url:"http://localhost:3000/get", 
+        async:false,
+        dataType:"json",
+        type:"GET",
+        success: (result,status)=>{
+            doc = result;
+        }
+    });
+    // console.log(doc);
+    return doc;
+    // $(document).ajaxComplete(function(event, xhr, settings){
+    //     var obj = xhr.responseText;
+    //     // var data = obj.data;
+    //     console.log(obj)
+    // });
 }
 
-var delete_data = function(ID){
-    $.ajax({
-        url:"http://localhost:3000/del", 
-        async:true, 
-        dataType:"json", 
-        data:{
-            id: ID,
-        }, 
-        type:"POST"
-    });
-}
+window.onload = remake_table();
