@@ -1,4 +1,5 @@
 
+
 var number_of_rows = 0;
 
 var add = function() {
@@ -60,3 +61,16 @@ var addTd2Tr = function(value, tr){
     temp.innerText = value;
     tr.appendChild(temp);
 }
+
+// if (window.XMLHttpRequest)
+// {// code for IE7+, Firefox, Chrome, Opera, Safari
+// xmlhttp=new XMLHttpRequest();
+// }
+// else
+// {// code for IE6, IE5
+// xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+// }
+
+// xmlhttp.open("GET","page.xml",false);
+// xmlhttp.send();
+// xmlDoc=xmlhttp.responseXML; 
