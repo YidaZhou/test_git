@@ -161,4 +161,4 @@ var get_new_data = function(){
     // });
 }
 
-window.onload = remake_table();
+window.onload = remake_table;
