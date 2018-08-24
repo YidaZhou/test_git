@@ -37,6 +37,15 @@ var renew = function(){
     }
 }
 
+var renew_data = function(){
+    $.ajax({
+        url:"http://localhost:3000/renew_data", 
+        async:true, 
+        type:"POST"
+    });
+}
+
+    
 var del = function() {
     let list = $("#table").find("tr");
     let current = list.first();
@@ -52,7 +61,7 @@ var del = function() {
         }
     }
     renew();
-    // get_new_data();
+    renew_data();
 }
 
 var remake_tr = function(data){
@@ -150,9 +159,14 @@ var get_new_data = function(){
         type:"GET",
         success: (result,status)=>{
             doc = result;
+            console.log(status);
+        },
+        error: (jqXHR, textStatus, errorThrown)=> {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
         }
     });
-    // console.log(doc);
     return doc;
     // $(document).ajaxComplete(function(event, xhr, settings){
     //     var obj = xhr.responseText;

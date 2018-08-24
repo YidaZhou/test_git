@@ -8,6 +8,8 @@ module.exports = (app) => {
 
     router.post('/del', PageController.delete_data )
 
+    router.post('/renew_data', PageController.order_data )
+
     router.get('/get', PageController.renew_data )
         
     // router.get('/:id/:name', async(ctx, next)=>{
