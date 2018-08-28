@@ -2,13 +2,17 @@ const router = require('koa-router')()
 const PageController = require('./controller/page')
 
 module.exports = (app) => {
-    router.get('/', PageController.add_data )
+    router.get('/edit_page', PageController.make_edit_page)
+
+    router.get('/', PageController.make_page )
     
     router.post('/add', PageController.save_data )
 
     router.post('/del', PageController.delete_data )
 
     router.post('/renew_data', PageController.order_data )
+
+    router.post('/back', PageController.process_edited_data )    
 
     router.get('/get', PageController.renew_data )
         

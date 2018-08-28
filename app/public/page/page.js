@@ -9,6 +9,17 @@ var add = function() {
     renew();
 }
 
+var goto_edit_page = function() {
+    $.ajax({
+        url:"http://localhost:3000/edit_page", 
+        async:true, 
+        type:"GET",
+        success: ()=> {
+            window.location.href="http://localhost:3000/edit_page"
+        }
+    });
+}
+
 var remake_table = function(){
     let data_list = get_new_data();
     for(let data of data_list){
@@ -119,7 +130,10 @@ var add_data = function() {
             studentId: studentId,
             grade: grade
         }, 
-        type:"POST"
+        type:"POST",
+        success: function(result, err){
+            console.log();
+        }
     });
 }
 
