@@ -1,5 +1,61 @@
 var number_of_rows = 0;
 
+function makeSortable(table) {
+    var headers=table.getElementsByTagName("th");
+    for(var i=0;i<headers.length;i++){
+        (function(n){
+            var flag=false;
+            headers[n].onclick=function(){
+                var tbody = document.getElementsByTagName("tbody")[0];
+                var table = document.getElementById("table");
+                var rows=document.getElementsByTagName("tr");
+                rows=Array.prototype.slice.call(rows,1);
+
+                if(n==1){
+                    rows.sort(function(row1,row2){
+                        var cell1=row1.getElementsByTagName("td")[n-1];
+                        var cell2=row2.getElementsByTagName("td")[n-1];
+                        var val1=cell1.innerText;
+                        var val2=cell2.innerText;
+    
+                        if(val1<val2){
+                            return -1;
+                        }else if(val1>val2){
+                            return 1;
+                        }else{
+                            return 0;
+                        }
+                    });
+                }
+
+                rows.sort(function(row1,row2){
+                    var cell1=row1.getElementsByTagName("td")[n-1];
+                    var cell2=row2.getElementsByTagName("td")[n-1];
+                    var val1=cell1.innerText;
+                    var val2=cell2.innerText;
+
+                    if(val1-val2<0){
+                        return -1;
+                    }else if(val1-val2>0){
+                        return 1;
+                    }else{
+                        return 0;
+                    }
+                });
+                if(flag){
+                    rows.reverse();
+                }
+                for(var i=0;i<rows.length;i++){
+                    tbody.appendChild(rows[i]);
+                }
+
+                flag=!flag;
+                renew();
+            }
+        }(i));
+    }
+}
+
 var add = function() {
     add_data();
     let tr = makeNewTr();
@@ -31,6 +87,8 @@ var remake_table = function(){
         renew();
         console.log(tr);
     }
+    var table=document.getElementsByTagName("table")[0];
+    makeSortable(table);
 }
 
 var renew = function(){
@@ -131,8 +189,10 @@ var add_data = function() {
             grade: grade
         }, 
         type:"POST",
-        success: function(result, err){
-            console.log();
+        error: (jqXHR, textStatus, errorThrown)=> {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
         }
     });
 }
@@ -145,7 +205,12 @@ var delete_data = function(ID){
         data:{
             id: ID,
         }, 
-        type:"POST"
+        type:"POST",
+        error: (jqXHR, textStatus, errorThrown)=> {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+        }
     });
 }
 // xmlhttp=$.ajax({url:"page/page.xml",async:true, dataType:"xml", data:"<p>hello world.</p>", success: function(result, status){
